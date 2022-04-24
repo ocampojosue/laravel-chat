@@ -1,18 +1,24 @@
 <div>
     <div class="form-group">
       <label for="">Nombre: </label>
-      <input type="text" name="" id="" class="form-control" wire:model="nombre" placeholder="" aria-describedby="helpId">
-      <small class="">{{$nombre}}</small>
+      <input type="text" class="form-control" wire:model="nombre">
+      @error('nombre')
+        <small class="text-danger">{{$message}}</small>
+      @enderror
     </div>
     <div class="form-group">
       <label for="">Mensaje: </label>
-      <input type="text" name="" id="" class="form-control" wire:model="mensaje" placeholder="" aria-describedby="helpId">
-      <small class="">{{$mensaje}}</small>
+      <input type="text" class="form-control" wire:model="mensaje">
+      @error('mensaje')
+        <small class="text-danger">{{$message}}</small>
+      @enderror
     </div>
-    <button type="button" class="btn btn-success" wire:click="enviarMensaje">Enviar</button>
+    <button class="btn btn-success" wire:click="enviarMensaje">Enviar</button>
 
     {{-- Mensaje de Alerta --}}
-    <div style="position: relative" class="alert alert-success collapse" role="alert" id="avisoSuccess">
+    <div style="position: absolute; top:10px;right:10px;" class="alert alert-success collapse mt-3" role="alert" id="avisoSuccess">
+      Se ha enviado
+    </div>
       <script>
         // Recibir en JS el emit desde el componente
         // Evento mensajeEnviado
@@ -27,5 +33,4 @@
           );
         });
       </script>
-    </div>
 </div>
