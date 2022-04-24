@@ -41,11 +41,14 @@ class ChatForm extends Component
             'mensaje.required' => 'El mensaje es requerido',
             'mensaje.min' => 'El mensaje debe tener mínimo 3 carácteres'
         ]);
+
+        $this->emit('mensajeEnviado');
+        
         $datos = [
             'usuario' => $this->nombre,
             'mensaje' => $this->mensaje
         ];
-        $this->emit('mensajeEnviado');
-        $this->emit('mensajeRecibido', $datos);
+        // $this->emit('mensajeRecibido', $datos);
+        event(new \App\Events\EnviarMensaje($this->nombre, $this->mensaje));
     }
 }
